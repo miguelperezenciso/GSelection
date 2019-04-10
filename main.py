@@ -64,13 +64,14 @@ h2 = 0.3    # assumed h2
 
 # BLUP evaluation when last 10 individuals have no phenotypes
 # phenotyped individuals (all but last 10)
-yids = np.arange(nind-10, dtype=np.int)
+yids = np.arange(nind-10, dtype=np.int) # contains ids of phenotyped individuals (0 is first indiv)
 ebv_blup10 = gs.doEbv0(criterion='blup', X=X, y=y[:,itrait], yIds=yids, h2=h2, ped=ped)
 
 # GBLUP, all individuals phenotyped
 ebv_gblup = gs.doEbv0(criterion='gblup', X=X, y=y[:,itrait], h2=h2, nh=ploidy)
 
 # Single Step evaluation assuming only last half of population is genotyped and all inds phenotyped but last 10 ones
+# mkrids contains ids of genotyped individuals (0 is first indiv)
 mkrids = np.arange(nind//2,nind, dtype=np.int)
 Xss = X[:,mkrids]
 ebv_sstep05 = gs.doEbv0(criterion='sstep', X=Xss,y=y[:,itrait],  yIds=yids, mkrIds=mkrids, h2=h2, nh=ploidy, ped=ped)
