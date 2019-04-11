@@ -26,7 +26,7 @@ without missing phenotypes. For instance, in calling the main function
             gs.doEbv0(criterion, X, y, yIds, h2, ped)
 
 ```criterion``` is the evaluation ciriterion ('blup', 'gblup', 'sstep'), ```X``` is the matrix with 
-genotypes, ```y``` is the vector with phenotypes, ```yIds``` contains id indices (eg ```yIds = [0, 3, 10]```)
+genotypes, ```y``` is a nind x ntrait matrix with ntrait phenotypes, ```yIds``` contains id indices (eg ```yIds = [0, 3, 10]```)
 means that inds 1st, 4th and 10th have phenotypes, and ```ped``` is the pedigree.
 
 ### Citation
