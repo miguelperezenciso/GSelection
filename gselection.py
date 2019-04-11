@@ -93,8 +93,7 @@ class GWAS:
         self.fdr = fdr(self.pvalue)[1]
 
     def plot(self, plotFile=None, fdr=None):
-        """ GWAS plot
-        """
+        """ GWAS plot """
         # p-values are printed
         if fdr is None:
             plt.scatter(list(range(len(self.pvalue))), -np.log10(self.pvalue), marker='o')

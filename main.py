@@ -1,26 +1,34 @@
 """
     Generic Genomic Selection Module
-    Reads plink or vcf file and allows computing EBV with different criteria
+    Allows computing EBV with different criteria
+    Inputs are:
+        - a nsnp x nind genotype file coded as 0, 1, 2 for each genotype
+        - a pedigree and phenotypes file, with inds coded as integers 1,2.. nind, 0 for unknwon parents
+           id id_father id_mother y1 y2 ...
     BLUP, GBLUP, SSTEP, GWAS or PCA plots
-
 """
 
 import numpy as np
 import pandas as pd
+import os
+import matplotlib.pyplot as plt
 
 # specific modules
 import gselection as gs
 
+#--> folders
+cdir = os.getcwd()
 # input file dir
-ddir='/home/miguel/PycharmProjects/gs/toy/'
-
+ddir= cdir + '/toy/'
 # pedigree and phenotype file
 pedfile = ddir + '/toy.pedy'
 
 # genotypes file 
 xfile = ddir + 'toy.gen'
+# set Tranpose=True if nind x nsnp matrix
 Transpose = False
-ploidy = 2 # set ploidy
+# ploidy
+ploidy = 2
 
 # STEP 1: uploads genotypes
 X = np.array(pd.read_csv(xfile, header=None, comment='#', sep='\s+'), dtype=float)
@@ -29,7 +37,8 @@ print('N markers read: ' + str(X.shape[0]))
 print('N inds read: ' + str(nind))
 print('If you have a nind x nsnp matrix, set Transpose to True')
 
-if Transpose is True: X = X.T
+if Transpose is True:
+    X = X.T
 
 # STEP 2: uploads pedigree and phenotypes
 ped = np.array(pd.read_csv(pedfile, header=None, comment='#', sep='\s+'))
