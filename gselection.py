@@ -1,3 +1,5 @@
+#-*- ecoding: utf-8 -*-
+
 """ This module incorporates several methods to seamlessly implement selection
     in seqbreed software
     Main arguments
@@ -23,7 +25,6 @@ from scipy import stats
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from statsmodels.stats.multitest import fdrcorrection as fdr
-
 
 # missing code, ULL: it must be float
 MISSING = -999999.
@@ -290,4 +291,4 @@ def doEbv0(criterion, X, y, h2, mkrIds=None, yIds=[], nh=2, ped=None):
     else:
         sys.exit('Unknown selection criterion ' + criterion)
 
-    return ebv
+    return print('\nEstimated breeding values (EBVs)\n'+str(ebv))
